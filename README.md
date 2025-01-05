@@ -1,13 +1,9 @@
-# Programming 2
-## Task 1
+# Runner App Data Management System
 
-*I confirm that the code contained in this file (other than that provided or authorised) is all my own work and has not been submitted elsewhere in fulfillment of this or any other award.*
+## Overview
+The app is manages a runner’s running data. The app allows to add a new set of
+running data including runners; and, list all running competitions and their runners.
 
-## Your Details
-
-### Name
-Your Name
-### Programme
-Your Programme
-
-**Date** : 22/04/2024
+Running competitions have a unique identifier (integer); season; competition; venue; rank; and, a
+collection of runners. Runner details include a runner number, runner name, and gender. The
+identifier is generated when a new running competition is added.
