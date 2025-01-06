@@ -27,52 +27,48 @@ public class Runner {
      * A getter for player number values
      */
     public int getRunnerNumber() {
-        // Complete this method
-        return 0;
+        return runnerNumber;
     }
 
     /**
      * A getter for name values
      */
     public String getRunnerName() {
-        // Complete this method
-        return "runnerName";
+        return runnerName;
     }
 
     /**
      * A setter method for name values
      */
     public void setRunnerName(String runnerName) {
-        // Complete this method
+        this.runnerName = runnerName;
     }
 
     /**
      * A getter for Running Comp id values
      */
     public int getRunningCompId() {
-        // Complete this method
-        return 0;
+        return runningCompId;
     }
 
     /**
      * A setter method for Running Comp id values
      */
     public void setRunningCompId(int runningCompId) {
-        // Complete this method
+        this.runningCompId = runningCompId;
     }
 
     /**
      * A getter for Runner Gender values
      */
     public String getGender() {
-        // Complete this method
-        return "gender";
+        return gender;
     }
     /**
      * A setter method for runner gender values
      */
     public void setGender(String gender) {
-        // Complete this method
+        this.gender = gender;
     }
 
 
@@ -81,8 +77,10 @@ public class Runner {
      */
     @Override
     public String toString() {
-        // Complete this method
-        return "toString";
+        return "Runner: runnerNumber= " + this.runnerNumber +
+        ", runnerName= " + this.runnerName +
+        ", runningCompId= " + this.runningCompId +
+        ", gender= " + this.gender + "]";
     }
 
 }

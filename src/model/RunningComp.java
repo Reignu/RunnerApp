@@ -57,97 +57,91 @@ public class RunningComp {
      * A getter for id values
      */
     public int getId() {
-        // Complete this method
-        return 0;
+        return id;
     }
 
     /**
      * A setter method for id values
      */
     public void setId(int id) {
-        // Complete this method
+        this.id = id;
     }
 
     /**
      * A getter for season values
      */
     public String getSeason() {
-        // Complete this method
-        return "Season";
+        return season;
     }
 
     /**
      * A setter method for season values
      */
     public void setSeason(String season) {
-        // Complete this method
+        this.season = season;
     }
 
     /**
      * A getter for competition values
      */
     public String getCompetition() {
-        // Complete this method
-        return "competition";
+        return competition;
     }
 
     /**
      * A setter method for competition values
      */
     public void setCompetition(String competition) {
-        // Complete this method
+        this.competition = competition;
     }
 
     /**
      * A getter for opponent values
      */
     public String getVenue() {
-        // Complete this method
-        return "venue";
+        return venue;
     }
 
     /**
      * A setter method for opponent values
      */
     public void setVenue(String venue) {
-        // Complete this method
+        this.venue = venue;
     }
 
     /**
      * A getter for result values
      */
     public int getRank() {
-        // Complete this method
-        return 0;
+        return rank;
     }
 
     /**
      * A setter method for result values
      */
     public void setRank(int rank) {
-        // Complete this method
+        this.rank = rank;
     }
 
     /**
      * A getter for players values
      */
     public List<Runner> getRunners() {
-		// Complete this method
-        return runners;
+        return new ArrayList<>(runners);
     }
 
     /**
      * A setter method for players values
      */
     public void setRunners(List<Runner> runners) {
-        // Complete this method
+        this.runners = new ArrayList<>(runners);
     }
 
     /**
      * Adds a supplied Runner object to the players attribute
      */
     public void addRunnerToComp(Runner player) {
-        // Complete this method
+        runners.add(player);
     }
 
     /**
@@ -156,6 +150,11 @@ public class RunningComp {
     @Override
     public String toString() {
         // Complete this method
-        return "str";
+        return "Running comp: id: " + this.id +
+        ", season: " + this.season +
+        ", competition: " + this.competition +
+        ", venue: " + this.venue +
+        ", rank: " + this.rank +
+        ", runners: " + this.runners;
     }
 }
