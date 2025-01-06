@@ -18,13 +18,31 @@ public class Controller {
         boolean finished = false;
         InputHelper inputHelper = new InputHelper();
         // Complete this method
+        do {
+            System.out.println("Running Competition Management System \n");
+            System.out.println("================================");
+            System.out.println("1. List Running Competitions");
 
+            int option = inputHelper.readInt("Enter choice (0 to Quit): ");
+
+            switch (option) {
+                case 1:
+                    listRunningComps();
+                    break;
+                case 0:
+                    finished = true;
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        } while (!finished);
     }
 
     private void listRunningComps() {
         System.out.println("List Running Competitions");
         System.out.println("=========================");
-        // Complete this method
+        List<RunningComp> runningComps = repository.getRunningComps();
+        System.out.println(runningComps);
 
     }
 
