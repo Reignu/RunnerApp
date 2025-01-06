@@ -11,7 +11,7 @@ public class Controller {
     private Repository repository;
 
     public Controller() {
-
+        repository = new Repository();
     }
 
     public void run() {
