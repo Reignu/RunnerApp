@@ -4,8 +4,7 @@ import controllers.Controller;
 /**
  * Runner Class
  *
- * @author Martin Gallacher
- * @author Bobby Law
+ * @author Reignu
  */
 public class RunnersApp {
     /**

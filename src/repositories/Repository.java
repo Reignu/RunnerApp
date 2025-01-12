@@ -3,7 +3,7 @@ package repositories;
 import daos.DAO;
 import java.util.List;
 
-import daos.TestDAO;
+import daos.SQLDAO;
 import model.RunningComp;
 import model.Runner;
 
@@ -20,7 +20,7 @@ public class Repository implements RepositoryInterface {
      * specified type of Data Access Object
      */
     public Repository() {
-        dao = new TestDAO();
+        dao = new SQLDAO();
     }
 
     /**
