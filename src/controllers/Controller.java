@@ -37,7 +37,10 @@ public class Controller {
                     addRunner();
                     break;
                 case 4:
-                    findRunningComp();
+                    RunningComp foundComp = findRunningComp();
+                    if (foundComp != null) {
+                        System.out.println("Found Running Competition: " + foundComp);
+                    }
                     break;
                 case 0:
                     finished = true;
@@ -91,7 +94,7 @@ public class Controller {
         RunningComp requiredRunningComp;
         int runningCompId;
         do {
-            runningCompId = inputHelper.readInt("Enter Running Competition Id (0 to Quit)");
+            runningCompId = inputHelper.readInt("Enter Running Competition Id (0 to Quit) ");
             if (runningCompId != 0) {
                 requiredRunningComp = repository.getRunningCompId(runningCompId);
                 if (requiredRunningComp != null)
