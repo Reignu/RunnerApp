@@ -17,17 +17,24 @@ public class Controller {
     public void run() {
         boolean finished = false;
         InputHelper inputHelper = new InputHelper();
-        // Complete this method
         do {
             System.out.println("Running Competition Management System \n");
             System.out.println("================================");
             System.out.println("1. List Running Competitions");
-
+            System.out.println("2. Add Running Competition");
+            System.out.println("3. Add Runner");
+            
             int option = inputHelper.readInt("Enter choice (0 to Quit): ");
 
             switch (option) {
                 case 1:
                     listRunningComps();
+                    break;
+                case 2:
+                    addRunningComp();
+                    break;
+                case 3:
+                    addRunner();
                     break;
                 case 0:
                     finished = true;
@@ -49,14 +56,32 @@ public class Controller {
     private void addRunningComp() {
         System.out.println("Add Running Competition");
         System.out.println("=======================");
-        // Complete this method
+        
+        InputHelper inputHelper = new InputHelper();
+        String season = inputHelper.readString("Enter season: ");
+        String competition = inputHelper.readString("Enter competition name: ");
+        String venue = inputHelper.readString("Enter venue: ");
+        int rank = inputHelper.readInt("Enter rank: ");
+        
+        RunningComp newComp = new RunningComp(season, competition, venue);
+        newComp.setRank(rank);
+        
+        repository.addRunningComp(newComp);
     }
 
     private void addRunner() {
         System.out.println("Add Runner");
         System.out.println("==========");
-        // Complete this method
-
+        
+        InputHelper inputHelper = new InputHelper();
+        int runnerNumber = inputHelper.readInt("Enter runner number: ");
+        String runnerName = inputHelper.readString("Enter runner name: ");
+        String gender = inputHelper.readString("Enter gender (M/F): ");
+        int runningCompId = inputHelper.readInt("Enter running competition ID: ");
+        
+        Runner newRunner = new Runner(runnerNumber, runnerName, runningCompId, gender);
+        
+        repository.addRunner(newRunner);
     }
 
     private RunningComp findRunningComp() {

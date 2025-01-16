@@ -22,7 +22,7 @@ public class SQLDAO extends DAO {
             connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connected to database");            
         } catch (SQLException ex) { 
-            System.out.println(ex.getMessage());
+            System.out.println("Database connection error: " + ex.getMessage());
         }
     }
 
@@ -51,7 +51,7 @@ public class SQLDAO extends DAO {
                 runningCompsList.add(runningComp);
             }            
         } catch (SQLException ex) { 
-            System.out.println(ex.getMessage());
+            System.out.println("Error getting running comps: " + ex.getMessage());
         }
         return runningCompsList;
     }
@@ -75,5 +75,39 @@ public class SQLDAO extends DAO {
             runnersList.add(runner);
         }
         return runnersList;
+    }
+
+    /**
+     * A method to add a new running competition to the database.
+     */
+    public void addRunningComp(RunningComp runningComp) {
+        String queryString = "CALL AddRunningComp(?, ?, ?, ?)";
+        try (PreparedStatement pstmt = connection.prepareStatement(queryString)) {
+            pstmt.setString(1, runningComp.getSeason());
+            pstmt.setString(2, runningComp.getCompetition());
+            pstmt.setString(3, runningComp.getVenue());
+            pstmt.setInt(4, runningComp.getRank());
+            pstmt.executeUpdate();
+            System.out.println("Added running competition: " + runningComp.getCompetition());
+        } catch (SQLException ex) {
+            System.out.println("Error adding running competition: " + ex.getMessage());
+        }
+    }
+
+    /**
+     * A method to add a new runner to the database.
+     */
+    public void addRunner(Runner runner) {
+        String queryString = "CALL AddRunner(?, ?, ?, ?)";
+        try (PreparedStatement pstmt = connection.prepareStatement(queryString)) {
+            pstmt.setInt(1, runner.getRunnerNumber());
+            pstmt.setString(2, runner.getRunnerName());
+            pstmt.setString(3, String.valueOf(runner.getGender()));
+            pstmt.setInt(4, runner.getRunningCompId());
+            pstmt.executeUpdate();
+            System.out.println("Added runner: " + runner.getRunnerName());
+        } catch (SQLException ex) {
+            System.out.println("Error adding runner: " + ex.getMessage());
+        }
     }
 }
