@@ -6,8 +6,7 @@ import java.util.List;
 /**
  * Models RunningComp entities
  *
- * @author Martin Gallacher
- * @author Bobby Law
+ * @author Reignu
  */
 public class RunningComp {
     private int id;
@@ -16,6 +15,54 @@ public class RunningComp {
     private String venue;
     private int rank;
     private List<Runner> runners;
+
+    // Nested Runner class
+    public static class Runner {
+        private final int runnerNumber;
+        private String runnerName;
+        private String gender;
+        private int runningCompId;
+
+        public Runner(int runnerNumber, String runnerName, int runningCompId, String gender) {
+            this.runnerNumber = runnerNumber;
+            this.runnerName = runnerName;
+            this.runningCompId = runningCompId;
+            this.gender = gender;
+        }
+
+        public int getRunnerNumber() {
+            return runnerNumber;
+        }
+
+        public String getRunnerName() {
+            return runnerName;
+        }
+
+        public void setRunnerName(String runnerName) {
+            this.runnerName = runnerName;
+        }
+
+        public String getGender() {
+            return gender;
+        }
+
+        public void setGender(String gender) {
+            this.gender = gender;
+        }
+
+        public int getRunningCompId() {
+            return runningCompId;
+        }
+
+        @Override
+        public String toString() {
+            return "Runner: runnerNumber= " + this.runnerNumber +
+                   ", runnerName= " + this.runnerName +
+                   ", runningCompId= " + this.runningCompId +
+                   ", gender= " + this.gender;
+                   
+        }
+    }
 
     /**
      * The default RunningComp constructor
@@ -138,10 +185,10 @@ public class RunningComp {
     }
 
     /**
-     * Adds a supplied Runner object to the players attribute
+     * Adds a supplied Runner object to the runner attribute
      */
-    public void addRunnerToComp(Runner player) {
-        runners.add(player);
+    public void addRunnerToComp(Runner runner) {
+        runners.add(runner);
     }
 
     /**

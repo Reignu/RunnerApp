@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import model.RunningComp;
-import model.Runner;
+import model.RunningComp.Runner;
 
 /**
  * A SQL Data Access Object class
@@ -44,7 +44,7 @@ public class SQLDAO extends DAO {
                 String competition = rs.getString("COMPETITION");
                 String venue = rs.getString("VENUE");
                 int rank = rs.getInt("RANK");
-                List<Runner> runnersList = getRunningCompRunners(runningCompId);
+                List<Runner> runnersList = getRunningCompRunners(runningCompId, new RunningComp(runningCompId, season, competition, venue, rank));
                 
                 RunningComp runningComp = new RunningComp(runningCompId, season, competition, venue, rank);
                 runningComp.setRunners(runnersList);
@@ -60,7 +60,7 @@ public class SQLDAO extends DAO {
      * A method to return the runners list associated with
      * a specified running competition through querying the database.
      */
-    private List<Runner> getRunningCompRunners(int runningCompId) throws SQLException {
+    private List<Runner> getRunningCompRunners(int runningCompId, RunningComp runningComp) throws SQLException {
         List<Runner> runnersList = new ArrayList<>();
         String queryString = "CALL GetRunningCompRunners(" + Integer.toString(runningCompId) + ")";
         Statement stmt = connection.createStatement();
@@ -71,7 +71,7 @@ public class SQLDAO extends DAO {
             String runnerName = rs.getString("RUNNERNAME");
             String gender = rs.getString("GENDER");
             
-            Runner runner = new Runner(runnerNumber, runnerName, runningCompId, gender);
+            RunningComp.Runner runner = new RunningComp.Runner(runnerNumber, runnerName, runningCompId, gender);
             runnersList.add(runner);
         }
         return runnersList;
@@ -97,17 +97,39 @@ public class SQLDAO extends DAO {
     /**
      * A method to add a new runner to the database.
      */
-    public void addRunner(Runner runner) {
+    public void addRunner(RunningComp.Runner runner) {
         String queryString = "CALL AddRunner(?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(queryString)) {
             pstmt.setInt(1, runner.getRunnerNumber());
             pstmt.setString(2, runner.getRunnerName());
-            pstmt.setString(3, String.valueOf(runner.getGender()));
+            pstmt.setString(3, runner.getGender());
             pstmt.setInt(4, runner.getRunningCompId());
             pstmt.executeUpdate();
             System.out.println("Added runner: " + runner.getRunnerName());
         } catch (SQLException ex) {
             System.out.println("Error adding runner: " + ex.getMessage());
         }
+    }
+
+    @Override
+    public RunningComp getRunningComp(int runningCompId) {
+        RunningComp runningComp = null;
+        String queryString = "CALL GetRunnerComp(?)"; // Assuming you have a stored procedure for this
+        try (PreparedStatement pstmt = connection.prepareStatement(queryString)) {
+            pstmt.setInt(1, runningCompId);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                String season = rs.getString("SEASON");
+                String competition = rs.getString("COMPETITION");
+                String venue = rs.getString("VENUE");
+                int rank = rs.getInt("RANK");
+                runningComp = new RunningComp(runningCompId, season, competition, venue, rank);
+                runningComp.setRunners(getRunningCompRunners(runningCompId, runningComp)); // Populate runners if needed
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error getting running competition: " + ex.getMessage());
+        }
+        return runningComp;
     }
 }

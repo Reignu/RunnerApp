@@ -5,7 +5,7 @@ import java.util.List;
 
 import daos.SQLDAO;
 import model.RunningComp;
-import model.Runner;
+import model.RunningComp.Runner;
 
 /**
  * Implements model management

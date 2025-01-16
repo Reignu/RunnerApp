@@ -1,14 +1,12 @@
 package repositories;
 
 import model.RunningComp;
-import model.Runner;
 
 import java.util.List;
 
 /**
  *
- * @author mga
- * @author Bobby Law
+ * @author Reignu
  */
 public interface RepositoryInterface {
     /**
@@ -30,7 +28,7 @@ public interface RepositoryInterface {
      *
      * @param runner
      */
-    void addRunner(Runner runner);
+    void addRunner(RunningComp.Runner runner);
 
     /**
      * A class that implements this interface must provide this method

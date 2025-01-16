@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.RunningComp;
-import model.Runner;
+import model.RunningComp.Runner;
 
 /**
  * An Test Data Access Object class

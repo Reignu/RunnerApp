@@ -2,7 +2,6 @@ package controllers;
 
 import helpers.InputHelper;
 import model.RunningComp;
-import model.Runner;
 import repositories.Repository;
 
 import java.util.List;
@@ -23,6 +22,7 @@ public class Controller {
             System.out.println("1. List Running Competitions");
             System.out.println("2. Add Running Competition");
             System.out.println("3. Add Runner");
+            System.out.println("4. Find Running Competition");
             
             int option = inputHelper.readInt("Enter choice (0 to Quit): ");
 
@@ -35,6 +35,9 @@ public class Controller {
                     break;
                 case 3:
                     addRunner();
+                    break;
+                case 4:
+                    findRunningComp();
                     break;
                 case 0:
                     finished = true;
@@ -79,8 +82,7 @@ public class Controller {
         String gender = inputHelper.readString("Enter gender (M/F): ");
         int runningCompId = inputHelper.readInt("Enter running competition ID: ");
         
-        Runner newRunner = new Runner(runnerNumber, runnerName, runningCompId, gender);
-        
+        RunningComp.Runner newRunner = new RunningComp.Runner(runnerNumber, runnerName, runningCompId, gender);
         repository.addRunner(newRunner);
     }
 

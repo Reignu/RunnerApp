@@ -3,7 +3,6 @@ package daos;
 import java.util.List;
 
 import model.RunningComp;
-import model.Runner;
 
 /**
  * An abstract Data Access Object class
@@ -23,7 +22,7 @@ public abstract class DAO {
      * A Data Access Object needs to be able to fulfill an
      * addRunner() request
      */
-    public abstract void addRunner(Runner runner);
+    public abstract void addRunner(RunningComp.Runner runner);
 
     /**
      * A Data Access Object needs to be able to fulfill a
